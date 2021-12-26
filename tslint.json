@@ -1,0 +1,16 @@
+{
+  "defaultSeverity": "error",
+  "extends": ["tslint:recommended"],
+  "jsRules": {},
+  "rules": {
+    "no-console": false,
+    "no-trailing-whitespace": false,
+    "no-angle-bracket-type-assertion": false,
+    "no-var-requires": false,
+    "array-type": false
+  },
+  "rulesDirectory": [],
+  "linterOptions": {
+    "exclude": ["src/tests/**/*.ts"]
+  }
+}
