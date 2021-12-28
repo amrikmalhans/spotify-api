@@ -1,6 +1,8 @@
 import { Router } from "express";
-import { getHello } from "./controllers/getHello";
+import { getSpotifyLogin } from "./controllers/getSpotifyLogin";
+import { getSpotifyToken } from "./controllers/getSpotifyToken";
 
 export const router = Router();
 
-router.get("/hello", getHello);
+router.get("/", getSpotifyToken);
+router.get("/login/spotify", getSpotifyLogin);
