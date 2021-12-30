@@ -7,3 +7,7 @@ export const spotifyAuthValidationSchema = Joi.object({
 export const spotifyAcessTokenCookiesValidationSchema = Joi.object({
   access_token: Joi.string().required(),
 }).unknown(true);
+
+export const spotifyAuthTokenValidationSchema = Joi.object({
+  refresh_token: Joi.string().required(),
+}).unknown(true);

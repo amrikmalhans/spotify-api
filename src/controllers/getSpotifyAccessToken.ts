@@ -1,9 +1,9 @@
-import { Request, response, Response } from "express";
-import { fetchToken } from "../services/SpotifyAuth/fetchToken";
+import { Request, Response } from "express";
+import { fetchAccessToken } from "../services/SpotifyAuth/fetchAccessToken";
 import { spotifyAuthValidationSchema } from "../utils/validation";
 
-// getSpotifyToken fetches the access token using the code from query string
-export const getSpotifyToken = async (req: Request, res: Response) => {
+// getSpotifyAccessToken fetches the access token using the code from query string
+export const getSpotifyAccessToken = async (req: Request, res: Response) => {
   const validate = spotifyAuthValidationSchema.validate(req.query);
 
   if (validate.error) {
@@ -18,14 +18,14 @@ export const getSpotifyToken = async (req: Request, res: Response) => {
     return;
   }
 
-  const tokenData = await fetchToken(code);
+  const tokenData = await fetchAccessToken(code);
 
   if (tokenData.isErr()) {
     res.status(404).send(tokenData.error);
     return;
   }
 
-  res.cookie("access_token", tokenData.value.access_token, {
+  res.cookie("token_data", tokenData.value, {
     maxAge: tokenData.value.expires_in * 1000,
     httpOnly: true,
   });

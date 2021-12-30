@@ -11,8 +11,8 @@ const spotifyApi = new SpotifyWebApi({
   redirectUri: process.env.SPOTIFY_REDIRECT_URI,
 });
 
-// fetchToken gets the access token from the Spotify API
-export const fetchToken = async (
+// fetchAccessToken gets the access token from the Spotify API
+export const fetchAccessToken = async (
   code: string
 ): Promise<Result<TokenData, Error>> => {
   const auth = await spotifyApi.authorizationCodeGrant(code);
