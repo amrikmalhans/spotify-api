@@ -13,12 +13,22 @@ export const getSpotifyToken = async (req: Request, res: Response) => {
 
   const { code } = validate.value;
 
+  if (req.cookies.access_token) {
+    res.status(218).send("Already have an access token");
+    return;
+  }
+
   const tokenData = await fetchToken(code);
 
   if (tokenData.isErr()) {
     res.status(404).send(tokenData.error);
     return;
   }
+
+  res.cookie("access_token", tokenData.value.access_token, {
+    maxAge: tokenData.value.expires_in * 1000,
+    httpOnly: true,
+  });
 
   res.status(200).send(tokenData.value);
 };
