@@ -21,6 +21,7 @@ export const getSpotifyMe = async (req: Request, res: Response) => {
     res.status(404).send(data.error);
     return;
   }
+  console.log(data.value);
 
   res.status(200).send(data.value);
 };

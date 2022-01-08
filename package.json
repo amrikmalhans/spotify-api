@@ -19,6 +19,8 @@
     "@types/form-data": "^2.5.0",
     "@types/isomorphic-fetch": "^0.0.35",
     "@types/joi": "^17.2.3",
+    "@types/pg": "^8.6.3",
+    "@types/sequelize": "^4.28.11",
     "@types/spotify-web-api-node": "^5.0.4",
     "nodemon": "^2.0.15",
     "prettier": "^2.5.1",
@@ -37,7 +39,7 @@
     "joi": "^17.5.0",
     "neverthrow": "^4.3.1",
     "pg": "^8.7.1",
-    "sequelize": "^7.0.0-alpha.2",
+    "sequelize": "^6.12.5",
     "spotify-web-api-node": "^5.0.2"
   }
 }
