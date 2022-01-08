@@ -13,9 +13,9 @@ export const getSpotifyMe = async (req: Request, res: Response) => {
     return;
   }
 
-  const { access_token } = validate.value;
+  const { token_data } = validate.value;
 
-  const data = await fetchSpotifyMe(access_token);
+  const data = await fetchSpotifyMe(token_data.access_token);
 
   if (data.isErr()) {
     res.status(404).send(data.error);
