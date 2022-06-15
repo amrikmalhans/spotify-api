@@ -1,9 +1,8 @@
 import { Request, Response } from "express";
-import { fetchSpotifyMe } from "../services/fetchSpotifyMe";
+import { fetchUserTopArtists } from "../services/fetchUserTopArtists";
 import { spotifyAcessTokenCookiesValidationSchema } from "../utils/validation";
 
-// getSpotifyToken fetches the access token using the code from query string
-export const getSpotifyMe = async (req: Request, res: Response) => {
+export const getUserTopArtists = async (req: Request, res: Response) => {
   const validate = spotifyAcessTokenCookiesValidationSchema.validate(
     req.cookies
   );
@@ -14,12 +13,13 @@ export const getSpotifyMe = async (req: Request, res: Response) => {
   }
 
   const { token_data } = validate.value;
-  const data = await fetchSpotifyMe(token_data.access_token);
 
-  if (data.isErr()) {
-    res.status(404).send(data.error);
+  const topArtists = await fetchUserTopArtists(token_data.access_token);
+
+  if (topArtists.isErr()) {
+    res.status(404).send("Error fetching user top artists");
     return;
   }
 
-  res.status(200).send(data.value);
+  res.status(200).send(topArtists.value);
 };

@@ -13,8 +13,8 @@ export const getSpotifyAccessToken = async (req: Request, res: Response) => {
 
   const { code } = validate.value;
 
-  if (req.cookies.token_data.access_token) {
-    res.status(218).send("Already have an access token");
+  if (req.cookies.token_data) {
+    res.status(200).send("Already have an access token");
     return;
   }
 
@@ -28,6 +28,8 @@ export const getSpotifyAccessToken = async (req: Request, res: Response) => {
   res.cookie("token_data", tokenData.value, {
     maxAge: tokenData.value.expires_in * 1000,
     httpOnly: true,
+    sameSite: "none",
+    secure: true,
   });
 
   res.status(200).send(tokenData.value);

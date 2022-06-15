@@ -18,6 +18,6 @@ export const fetchSpotifyMe = async (
     return err(new Error(`Error fetching Spotify me data: ${data.status}`));
   }
 
-  const artists = await data.json();
-  return ok(artists); // need to define types for it later
+  const me = await data.json();
+  return ok(me); // need to define types for it later
 };
