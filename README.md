@@ -1,2 +1,3 @@
-# backend
-backend for the app built with Node and TS
+# Spotify's API
+
+a wrapper around spotify's api
