@@ -28,8 +28,10 @@ export const getSpotifyAccessToken = async (req: Request, res: Response) => {
   res.cookie("token_data", tokenData.value, {
     maxAge: tokenData.value.expires_in * 1000,
     httpOnly: true,
-    sameSite: "none",
+    // add cookie to only this domain: https://spotify-analytics-gray.vercel.app/
+    domain: "spotify-analytics-gray.vercel.app",
     secure: true,
+    sameSite: "strict",
   });
 
   res.status(200).send(tokenData.value);
